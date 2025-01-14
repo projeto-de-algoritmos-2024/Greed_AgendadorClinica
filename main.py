@@ -1,16 +1,15 @@
-def interval_scheduling(intervals):
-    intervals.sort(key=lambda x: x[1])
-    
-    selected_intervals = []
-    last_end_time = float('-inf')
-    
-    for start, end in intervals:
-        if start >= last_end_time:
-            selected_intervals.append((start, end))
-            last_end_time = end
-    
-    return selected_intervals
+def interval_partitioning(horarios):
+    horarios.sort(key=lambda x: x[0])
+    salas = []
 
-tasks = [(1, 4), (3, 5), (0, 6), (5, 7), (8, 9), (5, 9)]
-result = interval_scheduling(tasks)
-print("Intervalos selecionados:", result)
+    for horario in horarios:
+        reservado = False
+        for sala in salas:
+            if sala[-1][1] <= horario[0]:
+                sala.append(horario)
+                reservado = True
+                break
+        if not reservado:
+            salas.append([horario])
+
+    return salas
