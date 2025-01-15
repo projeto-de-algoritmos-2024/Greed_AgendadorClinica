@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from tkinter.simpledialog import askstring
 
+
 def interval_partitioning(horarios):
     horarios.sort(key=lambda x: x[0])
     salas = []
@@ -18,7 +19,8 @@ def interval_partitioning(horarios):
 
     return salas
 
-def adiciona_horario():
+
+def add_interval():
     try:
         start = int(entry_start.get())
         end = int(entry_end.get())
@@ -36,7 +38,7 @@ def adiciona_horario():
         messagebox.showerror("Erro", "Insira valores válidos para início e fim!")
 
 
-def calcula_alocacao():
+def calculate_allocation():
     if not intervalos:
         messagebox.showerror("Erro", "Nenhum intervalo foi adicionado!")
         return
@@ -55,14 +57,38 @@ def calcula_alocacao():
             event_name = next(name for s, e, name in intervalos if s == start and e == end)
             tk.Label(result_window, text=f"  - {event_name} ({start}, {end})").pack(anchor="w")
 
+
 root = tk.Tk()
 root.title("Sistema de Agendamento de Consultas")
 root.geometry("600x400")
 
 intervalos = []
 
-calculate_button = tk.Button(root, text="Calcular Alocação", command=calcula_alocacao)
+title_label = tk.Label(root, text="Gerenciador de Consultas", font=("Arial", 16))
+title_label.pack(pady=10)
+
+frame_inputs = tk.Frame(root)
+frame_inputs.pack(pady=10)
+
+tk.Label(frame_inputs, text="Início:").grid(row=0, column=0, padx=5)
+entry_start = tk.Entry(frame_inputs, width=10)
+entry_start.grid(row=0, column=1, padx=5)
+
+tk.Label(frame_inputs, text="Fim:").grid(row=0, column=2, padx=5)
+entry_end = tk.Entry(frame_inputs, width=10)
+entry_end.grid(row=0, column=3, padx=5)
+
+add_button = tk.Button(frame_inputs, text="Adicionar Consulta", command=add_interval)
+add_button.grid(row=0, column=4, padx=10)
+
+tree = ttk.Treeview(root, columns=("name", "start", "end"), show="headings", height=10)
+tree.pack(pady=10, fill="x", expand=True)
+
+tree.heading("name", text="Nome")
+tree.heading("start", text="Início")
+tree.heading("end", text="Fim")
+
+calculate_button = tk.Button(root, text="Calcular Alocação", command=calculate_allocation)
 calculate_button.pack(pady=20)
 
-# Rodar a aplicação
 root.mainloop()
