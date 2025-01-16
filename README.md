@@ -13,8 +13,10 @@
 Este projeto é um sistema de agendamento para clínicas médicas. Ele permite gerenciar consultas de pacientes, atribuindo horários a médicos e salas de forma eficiente, evitando conflitos de agendamento. Utiliza um algoritmo de alocação para organizar os horários e garantir que os recursos (salas e médicos) sejam utilizados de forma otimizada.
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
 
+![alt text](/imagens/imagem1.png)
+![alt text](/imagens/imagem2.png)
+![alt text](/imagens/imagem3.png)
 ## Instalação 
 **Linguagem**: Python<br>
 **Framework**: Nenhum (utiliza apenas a biblioteca Tkinter embutida no Python)<br>
