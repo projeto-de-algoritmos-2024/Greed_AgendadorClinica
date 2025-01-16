@@ -39,7 +39,6 @@ python main.py
 
     - Nome do paciente.
     - Nome do médico.
-    - Número da sala.
     - Horário de início e término da consulta.
 3. Clique em "Adicionar Consulta" para salvar os dados.
 
